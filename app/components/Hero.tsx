@@ -14,7 +14,7 @@ export default function Hero() {
             <div className="relative w-full mt-10">
                 <div className="w-full h-[100vh] overflow-hidden showreel">
                     <video
-                        src="/assets/my_studio_two.MP4"
+                        src="/assets/my_studio_two.mp4"
                         loop
                         autoPlay
                         muted
