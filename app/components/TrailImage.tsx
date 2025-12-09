@@ -8,7 +8,7 @@ interface TrailImageProps {
     src: string;
     alt: string;
     className?: string;
-    triggerRef?: React.RefObject<HTMLElement>;
+    triggerRef?: React.RefObject<HTMLElement | null>; // <-- allow null
     threshold?: number;
 }
 
