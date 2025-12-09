@@ -8,29 +8,32 @@ interface TrailImageProps {
     src: string;
     alt: string;
     className?: string;
-    triggerRef?: React.RefObject<HTMLElement>; // optional: section to track
+    triggerRef?: React.RefObject<HTMLElement>;
     threshold?: number;
 }
 
-export default function TrailImage({ src, alt, className = "", triggerRef, threshold = 0.1 }: TrailImageProps) {
+export default function TrailImage({
+                                       src,
+                                       alt,
+                                       className = "",
+                                       triggerRef,
+                                       threshold = 0.1,
+                                   }: TrailImageProps) {
     const controls = useAnimation();
     const [ref, inView] = useInView({ threshold, triggerOnce: false });
 
     useEffect(() => {
-        // Use provided triggerRef instead of internal ref if given
-        const observerTarget = triggerRef?.current || ref.current;
-        if (!observerTarget) return;
-
+        // We can ignore .current; use `inView` to control animation
         if (inView) {
             controls.start({ opacity: 1, scale: 1, transition: { duration: 0.5 } });
         } else {
             controls.start({ opacity: 0, scale: 0.95, transition: { duration: 0.5 } });
         }
-    }, [controls, inView, triggerRef]);
+    }, [controls, inView]);
 
     return (
         <motion.img
-            ref={ref}
+            ref={ref} // callback ref from useInView
             src={src}
             alt={alt}
             className={`pointer-events-none fixed top-0 left-0 w-[210px] h-[140px] object-cover z-50 ${className}`}
