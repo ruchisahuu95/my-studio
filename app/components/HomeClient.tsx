@@ -16,7 +16,6 @@ export default function HomeClient() {
         <main className="bg-black text-white min-h-screen">
             <Navbar />
             <Hero />
-            {/* <TrailImagesContainer /> */}
             <RecentProjectsSection />
             <WorksSection />
             <Projects />
